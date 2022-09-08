@@ -1,0 +1,26 @@
+.techs {
+  display: flex;
+  flex-direction: column;
+  padding: 70px 18px;
+}
+
+.techs__title {
+  margin-bottom: 28px;
+}
+
+.techs__line {
+  color: black;
+}
+
+.techs__subtitle {
+  font-size: 30px;
+  line-height: 36px;
+  letter-spacing: -0.04em;
+}
+
+.techs__text {
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: -0.04em;
+}
+

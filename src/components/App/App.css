@@ -1,0 +1,20 @@
+@import url(../generalStyles/texts.css);
+
+.App {
+  border: 1px solid red;
+}
+
+.link {
+  text-decoration: none;
+  color: white;
+}
+
+.line {
+  margin: 0;
+  border: none;
+  border-top: 1px solid;
+}
+
+.large_line {
+  color: var(--large-lane-color);
+}

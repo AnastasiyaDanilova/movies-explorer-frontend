@@ -1,0 +1,156 @@
+.about {
+  padding: 70px 18px;
+}
+
+.about__title {
+  margin: 0 0 16px 0;
+}
+
+.about__paragraphs {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 60px 0;
+  margin: 0;
+}
+
+.about__paragraph {
+  margin: 0 0 56px;
+}
+
+.about__paragraph:last-child {
+  margin: 0;
+}
+
+.about__paragraph-title {
+  margin-bottom: 16px;
+}
+
+.about__text {
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 16px;
+  margin: 0;
+}
+
+.chart {
+  display: flex;
+  flex-direction: column;
+}
+
+.chart__graph-container {
+  display: flex;
+}
+
+.chart__graph {
+  display: flex;
+  margin: 0;
+  height: 35px;
+  width: 75%;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--landing-accent-color);
+}
+
+.chart__graph_one-week {
+  width: 25%;
+  color: black;
+  background-color: var(--bright-accent-color);
+}
+
+.chart__figcaption {
+  margin-top: 10px;
+  width: 75%;
+  text-align: center;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  text-align: center;
+  color: var(--capture-color);
+}
+
+.chart__figcaption_frontend {
+  width: 25%;
+}
+
+
+@media screen and (min-width: 600px) {
+  .about {
+    padding: 90px 50px;
+  }
+
+  .about__title {
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 27px;
+    margin: 0 0 23px 0;
+  }
+
+  .about__paragraph-title {
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 22px;
+  }
+
+  .about__text {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .about__paragraph {
+    margin: 0 30px 0 0;
+  }
+
+  .about__paragraphs {
+    display: flex;
+    flex-direction: row;
+    padding: 70px 0 93px;
+  }
+
+  .chart__graph {
+    font-size: 14px;
+line-height: 17px;
+  }
+
+  .chart__figcaption {
+    font-size: 14px;
+line-height: 17px;
+  }
+}
+
+@media screen and (min-width: 940px) {
+  .about {
+    padding: 100px 60px;
+  }
+
+  .about__text {
+    font-size: 13px;
+line-height: 19px;
+  }
+
+  .about__paragraph {
+    margin: 0 35px 0 0;
+  }
+
+  
+}
+
+@media screen and (min-width: 1200px) {
+  .about {
+    padding: 110px 70px;
+  }
+  .about__text {
+    font-size: 14px;
+line-height: 20px;
+  }
+
+  .about__paragraph {
+    margin: 0 40px 0 0;
+  }
+
+
+}
+

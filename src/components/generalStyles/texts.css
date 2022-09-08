@@ -1,0 +1,21 @@
+.block-title {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+
+.block-subtitle {
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 36px;
+  margin: 0;
+}
+
+.block-text {
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 16px;
+  margin: 0;
+}
