@@ -1,14 +1,3 @@
-@import url(../generalStyles/texts.css);
-
-.App {
-  border: 1px solid red;
-}
-
-.link {
-  text-decoration: none;
-  color: white;
-}
-
 .line {
   margin: 0;
   border: none;

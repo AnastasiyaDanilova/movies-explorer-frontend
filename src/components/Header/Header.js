@@ -6,13 +6,12 @@ import HeaderLinks from '../HeaderLinks/HeaderLinks';
 
 import './Header.css';
 
-function Header() {
+function Header({signupLink, signinLink}) {
 
   return (
     <header className='header'>
       <LogoLink/>
-      <HeaderLinks/>
-
+      <HeaderLinks signupLink={`${signupLink}`} signinLink={`${signinLink}`}/>
     </header>
    
     )

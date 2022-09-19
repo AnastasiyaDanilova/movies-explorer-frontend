@@ -4,6 +4,10 @@
 
 .about__title {
   margin: 0 0 16px 0;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: -0.04em;
 }
 
 .about__paragraphs {
@@ -23,7 +27,11 @@
 }
 
 .about__paragraph-title {
-  margin-bottom: 16px;
+  margin-bottom: 0 0 16px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: -0.04em;
 }
 
 .about__text {
@@ -112,12 +120,12 @@
 
   .chart__graph {
     font-size: 14px;
-line-height: 17px;
+    line-height: 17px;
   }
 
   .chart__figcaption {
     font-size: 14px;
-line-height: 17px;
+    line-height: 17px;
   }
 }
 
@@ -128,29 +136,26 @@ line-height: 17px;
 
   .about__text {
     font-size: 13px;
-line-height: 19px;
+    line-height: 19px;
   }
 
   .about__paragraph {
     margin: 0 35px 0 0;
   }
 
-  
 }
 
 @media screen and (min-width: 1200px) {
   .about {
     padding: 110px 70px;
   }
+
   .about__text {
     font-size: 14px;
-line-height: 20px;
+    line-height: 20px;
   }
 
   .about__paragraph {
     margin: 0 40px 0 0;
   }
-
-
 }
-

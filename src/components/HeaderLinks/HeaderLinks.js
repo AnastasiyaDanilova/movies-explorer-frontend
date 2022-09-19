@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 
 import './HeaderLinks.css';
 
-function HeaderLinks() {
+function HeaderLinks({signupLink, signinLink}) {
 
   return (
     <div className='header-links'>
-      <Link className= 'link header-links__link' to='/'>Регистрация</Link>
-      <Link className='link header-links__link header-links__link_login' to="/">Войти</Link>
+      <Link className= 'header-links__link' to={`${signupLink}`}>Регистрация</Link>
+      <Link className='header-links__link header-links__link_login' to={`${signinLink}`}>Войти</Link>
     </div>
   )
 };
