@@ -5,24 +5,43 @@ import { CurrentUserContext } from '../../context/CurrentUserContext';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
+import Login from '../Login/Login';
+import Register from '../Register/Register';
+import Movies from '../Movies/Movies';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
+
+  const [loggedIn, setLoggedIn] = React.useState(true);
+  const [menuOpen, setMenuOpen] = React.useState(false);
+
+
   return (
     <div className="page">
       <CurrentUserContext.Provider>
+
+        <Header signupLink="/signup" signinLink="/signin" lendingLink="/" filmsLink="/movies" 
+        savedFilmsLink="/saved-movies" accountLink="/profile" loggedIn={loggedIn} />
         <Switch>
           <Route exact path="/">
-            <Header signupLink="/signup" signinLink="/signin" />
             <Main />
-            <Footer />
           </Route>
 
           <Route path="/signin">
-            <Header />
+            <Login />
           </Route>
 
-          <Route path="/signup"></Route>
+          <Route path="/signup">
+            <Register />
+          </Route>
+
+          <ProtectedRoute path="/movies" loggedIn={loggedIn}>
+            <Movies />
+          </ProtectedRoute >
+
         </Switch>
+        <Footer />
+
       </CurrentUserContext.Provider>
     </div>
   );

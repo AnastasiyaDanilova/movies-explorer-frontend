@@ -7,3 +7,10 @@
 .large_line {
   color: var(--large-lane-color);
 }
+
+.button {
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
