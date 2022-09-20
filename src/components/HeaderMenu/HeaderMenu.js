@@ -4,22 +4,22 @@ import './HeaderMenu.css';
 import { Link } from 'react-router-dom';
 import closeIcon from '../../images/closeIcon.svg'
 
-function HeaderMenu({ lendingLink, filmsLink, savedFilmsLink, accountLink, openMenu }) {
+function HeaderMenu({ lendingLink, filmsLink, savedFilmsLink, accountLink, menuOpen, onOpenMenu, onCloseMenu }) {
 
 
   return (
     <div>
-      <button className='button burger-icon' />
+      <button className='button burger-icon' onClick={onOpenMenu} />
 
-      <div className='menu'>
+      <div className={ menuOpen ? 'menu' : 'menu__close' }>
         <div className='menu__link-container'>
-          <img className='menu__close-icon' src={closeIcon} alt='крестик'></img>
+          <img className='menu__close-icon' src={closeIcon} alt='крестик' onClick={onCloseMenu} />
           <div className='menu__links'>
-            <Link className='menu__link menu__link_lending' to={`${lendingLink}`}>Главная</Link>
-            <Link className='menu__link menu__link_films' to={`${filmsLink}`}>Фильмы</Link>
-            <Link className='menu__link' to={`${savedFilmsLink}`}>Сохранённые фильмы</Link>
+            <Link className='menu__link menu__link_lending' to={`${lendingLink}`} onClick={onCloseMenu}>Главная</Link>
+            <Link className='menu__link menu__link_films' to={`${filmsLink}`} onClick={onCloseMenu}>Фильмы</Link>
+            <Link className='menu__link' to={`${savedFilmsLink}`} onClick={onCloseMenu}>Сохранённые фильмы</Link>
           </div>
-          <Link className='menu__link menu__link_account' to={`${accountLink}`}>Аккаунт <div className='account-icon' /></Link>
+          <Link className='menu__link menu__link_account' to={`${accountLink}`} onClick={onCloseMenu}>Аккаунт <div className='account-icon' /></Link>
         </div>
       </div>
       </div>

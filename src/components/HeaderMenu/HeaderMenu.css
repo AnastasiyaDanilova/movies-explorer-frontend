@@ -17,6 +17,10 @@
   align-items: end;
 }
 
+.menu__close {
+  display: none;
+}
+
 .menu__link-container {
   display: flex;
   flex-direction: column;
@@ -94,6 +98,11 @@
   .menu {
     background-color: transparent;
     position: relative;
+  }
+
+  .menu__close {
+    display: flex;
+    justify-content: end;
   }
 
   .burger-icon {

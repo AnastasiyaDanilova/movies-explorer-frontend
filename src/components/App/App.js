@@ -15,13 +15,21 @@ function App() {
   const [loggedIn, setLoggedIn] = React.useState(true);
   const [menuOpen, setMenuOpen] = React.useState(false);
 
+  function openMenu() {
+    setMenuOpen(true)
+  }
+
+  function closeMenu() {
+    setMenuOpen(false)
+  }
+
 
   return (
     <div className="page">
       <CurrentUserContext.Provider>
 
         <Header signupLink="/signup" signinLink="/signin" lendingLink="/" filmsLink="/movies" 
-        savedFilmsLink="/saved-movies" accountLink="/profile" loggedIn={loggedIn} />
+        savedFilmsLink="/saved-movies" accountLink="/profile" loggedIn={loggedIn} menuOpen={menuOpen} onOpenMenu={openMenu} onCloseMenu={closeMenu} />
         <Switch>
           <Route exact path="/">
             <Main />

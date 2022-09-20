@@ -1,14 +1,12 @@
 import './Movies.css';
-import LogoLink from '../LogoLink/LogoLink';
+
+import SearchForm from '../SearchForm/SearchForm';
 
 function Movies() {
 
   return (
     <main className="movie">
-      <div>
-        <LogoLink />
-      </div>
-      
+      <SearchForm />
     </main>
   )
 };
