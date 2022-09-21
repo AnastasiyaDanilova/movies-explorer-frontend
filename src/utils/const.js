@@ -1,4 +1,4 @@
-const cards = [
+export const cards = [
   {
       name: 'В погоне за Бенкси',
       image: "https://lapkins.ru/upload/uf/f79/f795e55cc07bda34c64a596af9ac28e1.jpg",

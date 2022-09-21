@@ -1,10 +1,11 @@
+
 import React from 'react';
-import './Movies.css';
+import './SavedMovies.css';
 
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
-function Movies() {
+function SavedMovies() {
 
   const [isClickedSave, setisClickedSave] = React.useState(false);
 
@@ -15,11 +16,11 @@ function Movies() {
   };
 
   return (
-    <main className="movie">
+    <main className="saved-movies">
       <SearchForm />
       <MoviesCardList onclickSaveButton={clickSaveButton} isClickedSave={isClickedSave} />
     </main>
   )
 };
 
-export default Movies;
+export default SavedMovies;

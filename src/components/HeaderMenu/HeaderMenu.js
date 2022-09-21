@@ -15,11 +15,11 @@ function HeaderMenu({ lendingLink, filmsLink, savedFilmsLink, accountLink, menuO
         <div className='menu__link-container'>
           <img className='menu__close-icon' src={closeIcon} alt='крестик' onClick={onCloseMenu} />
           <div className='menu__links'>
-            <Link className='menu__link menu__link_lending' to={`${lendingLink}`} onClick={onCloseMenu}>Главная</Link>
-            <Link className='menu__link menu__link_films' to={`${filmsLink}`} onClick={onCloseMenu}>Фильмы</Link>
-            <Link className='menu__link' to={`${savedFilmsLink}`} onClick={onCloseMenu}>Сохранённые фильмы</Link>
+            <Link className='link menu__link menu__link_lending' to={`${lendingLink}`} onClick={onCloseMenu}>Главная</Link>
+            <Link className='link menu__link menu__link_films' to={`${filmsLink}`} onClick={onCloseMenu}>Фильмы</Link>
+            <Link className='link menu__link' to={`${savedFilmsLink}`} onClick={onCloseMenu}>Сохранённые фильмы</Link>
           </div>
-          <Link className='menu__link menu__link_account' to={`${accountLink}`} onClick={onCloseMenu}>Аккаунт <div className='account-icon' /></Link>
+          <Link className='link menu__link menu__link_account' to={`${accountLink}`} onClick={onCloseMenu}>Аккаунт <div className='account-icon' /></Link>
         </div>
       </div>
       </div>

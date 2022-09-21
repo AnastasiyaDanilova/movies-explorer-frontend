@@ -8,11 +8,15 @@ import Footer from '../Footer/Footer';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import Movies from '../Movies/Movies';
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import SavedMovies from '../SavedMovies/SavedMovies';
+import Profile from '../Profile/Profile';
+import NotFoundPage from '../NotFoundPage/NotFoundPage';
+// import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
 
   const [loggedIn, setLoggedIn] = React.useState(true);
+  const [currentUser, setCurrentUser] = React.useState({});
   const [menuOpen, setMenuOpen] = React.useState(false);
 
   function openMenu() {
@@ -26,10 +30,10 @@ function App() {
 
   return (
     <div className="page">
-      <CurrentUserContext.Provider>
+      <CurrentUserContext.Provider value={currentUser}>
 
-        <Header signupLink="/signup" signinLink="/signin" lendingLink="/" filmsLink="/movies" 
-        savedFilmsLink="/saved-movies" accountLink="/profile" loggedIn={loggedIn} menuOpen={menuOpen} onOpenMenu={openMenu} onCloseMenu={closeMenu} />
+        <Header signupLink="/signup" signinLink="/signin" lendingLink="/" filmsLink="/movies"
+          savedFilmsLink="/saved-movies" accountLink="/profile" loggedIn={loggedIn} menuOpen={menuOpen} onOpenMenu={openMenu} onCloseMenu={closeMenu} />
         <Switch>
           <Route exact path="/">
             <Main />
@@ -43,9 +47,21 @@ function App() {
             <Register />
           </Route>
 
-          <ProtectedRoute path="/movies" loggedIn={loggedIn}>
+          <Route path="/movies">
             <Movies />
-          </ProtectedRoute >
+          </Route >
+
+          <Route path="/saved-movies">
+            <SavedMovies />
+          </Route >
+
+          <Route path="/profile">
+            <Profile />
+          </Route>
+
+          <Route path="*">
+            <NotFoundPage />
+          </Route>
 
         </Switch>
         <Footer />

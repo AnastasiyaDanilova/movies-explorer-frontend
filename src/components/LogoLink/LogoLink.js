@@ -10,7 +10,7 @@ import logo from '../../images/logo.svg';
 function LogoLink() {
 
   return (
-    <Link to='/'>
+    <Link to='/' className='link'>
       <img className='logo-link' src={logo} alt='Логотип'/>
     </Link>
     )
