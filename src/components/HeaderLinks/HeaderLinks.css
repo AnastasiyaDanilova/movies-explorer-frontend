@@ -1,0 +1,31 @@
+.header-links {
+  display: flex;
+  align-items: center;
+}
+
+.header-links__link {
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 16px;
+  text-decoration: none;
+  color: white;
+}
+
+.header-links__link_login {
+  color: black;
+  background-color: var(--bright-accent-color);
+  border-radius: 3px;
+  padding: 5px 12px;
+  margin-left: 14px;
+}
+
+@media screen and (min-width: 600px) {
+  .header-links__link {
+    font-size: 12px;
+  }
+
+  .header-links__link_login {
+    margin-left: 30px;
+    padding: 8px 20px;
+  }
+}

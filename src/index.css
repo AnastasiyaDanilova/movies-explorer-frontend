@@ -1,0 +1,22 @@
+@import url('./vendor/fonts/fonts.css');
+
+@import url('./vendor/normalize.css');
+
+body {
+  font-family: 'Inter', Arial, sans-serif;
+  background-color: var(--page-color);
+  color: var(--text-color);
+}
+
+:root {
+  --text-color: #FFFFFF;
+  --page-color: #202020;
+  --background-block-color: #272727;
+  --landing-accent-color: #303030;
+  --large-lane-color: #DADADA;
+  --medium-lane-color: #E6E6E6;
+  --slim-lane-color: #424242;
+  --bright-accent-color: #3DDC84;
+  --capture-color: #A0A0A0;
+  --button-auth-color: #4285F4;
+};

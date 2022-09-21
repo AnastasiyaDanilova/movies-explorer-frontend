@@ -1,0 +1,132 @@
+.movieCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.movieCard__save-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: white;
+  background-color: #313131;
+  padding: 6px 7px;
+  border-radius: 30px;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 9px;
+  cursor: pointer;
+}
+
+.movieCard__save-button_saved {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-image: url(../../images/savedIcon.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 21px;
+  height: 21px;
+  background-color: #EE3465;
+  border-radius: 50%;
+}
+
+.movieCard__delete-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-image: url(../../images/deleteButton.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 21px;
+  height: 21px;
+  background-color: #313131;
+  border-radius: 50%;
+}
+
+
+.movieCard__image {
+  height: 168px;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+.movieCard__container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.movieCard__name {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  margin: 0;
+}
+
+.movieCard__time {
+  background-color: #2F2F2F;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 10px;
+  color: #8B8B8B;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  padding: 3px 4px;
+}
+
+@media screen and (min-width: 600px) {
+
+  .movieCard__image {
+    height: 190px;
+  }
+
+  .movieCard__image {
+    margin-bottom: 25px;
+  }
+
+  .movieCard__save-button {
+    display: none;
+    top: 14px;
+    right: 14px;
+  }
+
+  .movieCard__delete-button {
+    display: none;
+    top: 14px;
+    right: 14px;
+  }
+
+  .movieCard__save-button_saved {
+    display: none;
+    top: 14px;
+    right: 14px;
+  }
+
+  .movieCard:hover .movieCard__save-button {
+    display: block;
+  }
+  
+  .movieCard:hover .movieCard__save-button_saved {
+    display: block;
+  }
+
+  .movieCard:hover .movieCard__delete-button {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 940px) {
+
+  .movieCard__image {
+    height: 201px;
+  }
+
+}
