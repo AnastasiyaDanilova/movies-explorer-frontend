@@ -1,2 +1,3 @@
 # movies-explorer-frontend
-# movies-explorer-api
+
+Ссылка на макет - https://disk.yandex.ru/d/sYEaMRI6SGlIEw
