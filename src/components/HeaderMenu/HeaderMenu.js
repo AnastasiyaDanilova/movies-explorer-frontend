@@ -9,7 +9,7 @@ function HeaderMenu({ lendingLink, filmsLink, savedFilmsLink, accountLink, menuO
 
   return (
     <div>
-      <button className='button burger-icon' onClick={onOpenMenu} />
+      <button className='button burger-icon' type='button' onClick={onOpenMenu} />
 
       <div className={ menuOpen ? 'menu' : 'menu__close' }>
         <div className='menu__link-container'>

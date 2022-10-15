@@ -11,11 +11,11 @@ function MoviesCard({ movie, onclickSaveButton, isClickedSave }) {
 
       <Route path="/movies">
         <button className={ !isClickedSave? 'button movieCard__save-button' : 'button movieCard__save-button_saved'} 
-      onClick={onclickSaveButton}>{!isClickedSave ? `Coxpанить` : ''}</button>
+      type='button' onClick={onclickSaveButton}>{!isClickedSave ? `Coxpанить` : ''}</button>
       </Route>
 
       <Route path="/saved-movies">
-        <button className='button movieCard__delete-button'></button>
+        <button className='button movieCard__delete-button' type='button'></button>
       </Route>
 
       </Switch>

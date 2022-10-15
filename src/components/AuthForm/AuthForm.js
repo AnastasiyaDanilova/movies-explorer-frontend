@@ -16,7 +16,7 @@ function AuthForm({ title, buttonText, children, handleSubmit, authText, authBut
 
       <form className="auth__form" onSubmit={handleSubmit}>
         {children}
-        <button className={`button auth__button ${buttonClass}`}>{buttonText}</button>
+        <button className={`button auth__button ${buttonClass}`} type="submit">{buttonText}</button>
       </form>
       <p className="auth__text">{authText} <Link className='auth__buttonText' to={`${authButtonTextPath}`}>{authButtonText}</Link></p>
     </div>

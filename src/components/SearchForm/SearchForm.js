@@ -9,8 +9,8 @@ function SearchForm() {
       <form className='search-form__container'>
 
         <div className='search-form__input-container'>
-          <input className='search-form__input' placeholder='Фильм' ></input>
-          <button className='button search-form__button' />
+          <input className='search-form__input' placeholder='Фильм' required></input>
+          <button className='button search-form__button' type='submit'/>
         </div>
 
         <div className='search-form__checkbox-container'>

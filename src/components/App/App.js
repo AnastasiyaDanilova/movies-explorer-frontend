@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css'
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
+import { register, autorize, checkToken } from '../../utils/MainApi';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
@@ -15,9 +16,11 @@ import NotFoundPage from '../NotFoundPage/NotFoundPage';
 
 function App() {
 
-  const [loggedIn, setLoggedIn] = React.useState(true);
+  const [loggedIn, setLoggedIn] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
   const [menuOpen, setMenuOpen] = React.useState(false);
+
+  const history = useHistory()
 
   function openMenu() {
     setMenuOpen(true)
@@ -25,6 +28,66 @@ function App() {
 
   function closeMenu() {
     setMenuOpen(false)
+  }
+
+  function useCheckToken() {
+    React.useEffect(() => {
+      if (localStorage.getItem('token')) {
+        setLoggedIn(true);
+      };
+      return;
+    }, [])
+  }
+
+  useCheckToken()
+
+  function handleRegister(name, email, password) {
+    register(name, email, password)
+      .then((res) => {
+        if (res) {
+          handleLogin(email, password)
+        }
+      }).catch((res) => {
+        console.log(res)
+        setLoggedIn(false)
+      })
+  }
+
+  function handleLogin(email, password) {
+    autorize(email, password).then((res) => {
+      if (res) {
+        localStorage.setItem('token', res.token)
+        history.push('/movies')
+        setLoggedIn(true)
+      }
+    }).catch((res) => {
+      setLoggedIn(false)
+      console.log(res)
+  });
+  }
+
+  
+
+  // function handleCheckToken() {
+
+  //   if (localStorage.getItem('token')) {
+
+  //     let jwt = localStorage.getItem('token')
+  //     checkToken(jwt).then((res) => {
+  //       if (res) {
+  //         setLoggedIn(true);
+  //         history.push('/movies')
+  //         console.log('checktoken', loggedIn)
+  //       }
+  //     }).catch((res) => console.log(res));
+  //   };
+  //   return;
+  // };
+
+  function handleLogout() {
+    localStorage.removeItem('token');
+    setLoggedIn(false);
+    history.push('/')
   }
 
 
@@ -40,11 +103,11 @@ function App() {
           </Route>
 
           <Route path="/signin">
-            <Login />
+            <Login handleLogin={handleLogin} />
           </Route>
 
           <Route path="/signup">
-            <Register />
+            <Register handleRegister={handleRegister} />
           </Route>
 
           <Route path="/movies">
@@ -56,7 +119,7 @@ function App() {
           </Route >
 
           <Route path="/profile">
-            <Profile />
+            <Profile handleLogout={handleLogout} />
           </Route>
 
           <Route path="*">

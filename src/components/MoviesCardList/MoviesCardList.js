@@ -12,7 +12,7 @@ function MoviesCardList( {onclickSaveButton, isClickedSave}) {
           return <MoviesCard movie={card} key={card.id} onclickSaveButton={onclickSaveButton} isClickedSave={isClickedSave} />
         })}
       </ul>
-      <button className='button movies__more-button'>Ещё</button>
+      <button className='button movies__more-button' type='button'>Ещё</button>
     </section>
   )
 };

@@ -56,12 +56,14 @@
   font-size: 12px;
   line-height: 15px;
   background-color: var(--landing-accent-color);
+  margin: 0 auto;
 }
 
 @media screen and (min-width: 600px) {
 
   .techs {
     padding: 90px 50px;
+    background-color: #272727;
   }
 
   .techs__line {
