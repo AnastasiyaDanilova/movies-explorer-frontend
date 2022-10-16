@@ -3,7 +3,7 @@
 const BASE_URL = 'https://api.diploma-movies.nomoredomains.xyz'
 
 const checkServerResponce = (res) => {
-  return res ? res.json() : Promise.reject(res.status)
+  return res.ok ? res.json() : Promise.reject(res.status)
 }
 
 export const register = (name, email, password) => {
@@ -13,9 +13,7 @@ export const register = (name, email, password) => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({ name, email, password })
-  }).then((res) =>
-    checkServerResponce(res)
-  )
+  }).then(res => checkServerResponce(res))
 };
 
 export const autorize = (email, password) => {
@@ -25,9 +23,7 @@ export const autorize = (email, password) => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({ email, password })
-  }).then((res) =>
-    checkServerResponce(res)
-  )
+  }).then(res => checkServerResponce(res))
 };
 
 export const checkToken = (token) => {
@@ -37,8 +33,5 @@ export const checkToken = (token) => {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${token}`
     }
-  })
-    .then((res) =>
-      checkServerResponce(res)
-    )
+  }).then(res => checkServerResponce(res))
 }

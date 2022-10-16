@@ -47,26 +47,32 @@ function App() {
         if (res) {
           handleLogin(email, password)
         }
-      }).catch((res) => {
-        console.log(res)
+      }).catch((err) => {
+        console.log(err)
         setLoggedIn(false)
       })
   }
 
   function handleLogin(email, password) {
-    autorize(email, password).then((res) => {
-      if (res) {
-        localStorage.setItem('token', res.token)
-        history.push('/movies')
-        setLoggedIn(true)
-      }
-    }).catch((res) => {
-      setLoggedIn(false)
-      console.log(res)
-  });
+    autorize(email, password)
+      .then((res) => {
+        console.log(res)
+        if (res) {
+          localStorage.setItem('token', res.token)
+          history.push('/movies')
+          setLoggedIn(true)
+          console.log('then')
+        }
+        
+      })
+      .catch((err) => {
+        setLoggedIn(false)
+        console.log('catch')
+        console.log('error', err)
+      });
   }
 
-  
+
 
   // function handleCheckToken() {
 
