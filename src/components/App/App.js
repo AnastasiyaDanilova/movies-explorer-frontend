@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css'
 import { Route, Switch, useHistory } from 'react-router-dom';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
-import { register, autorize, checkToken } from '../../utils/MainApi';
+import { register, autorize, checkToken, getProfile, updateProfile } from '../../utils/MainApi';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
@@ -12,7 +12,7 @@ import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
-// import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
 
@@ -20,7 +20,42 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState({});
   const [menuOpen, setMenuOpen] = React.useState(false);
 
+  const [registerError, setRegisterError] = React.useState(false);
+  const [registerErrorText, setRegisterErrorText] = React.useState('');
+
+  const [loginError, setLoginError] = React.useState('');
+  const [loginErrorText, setLoginErrorText] = React.useState(false);
+
+
   const history = useHistory()
+
+  React.useEffect(() => {
+    const token = localStorage.getItem('token')
+
+    if (token) {
+      checkToken(token)
+        .then((res) => {
+          if (res) {
+            setLoggedIn(true);
+          }
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
+  }, [])
+
+  React.useEffect(() => {
+    if (loggedIn) {
+      getProfile()
+        .then((res) => {
+          setCurrentUser(res)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
+  }, [loggedIn])
 
   function openMenu() {
     setMenuOpen(true)
@@ -30,24 +65,24 @@ function App() {
     setMenuOpen(false)
   }
 
-  function useCheckToken() {
-    React.useEffect(() => {
-      if (localStorage.getItem('token')) {
-        setLoggedIn(true);
-      };
-      return;
-    }, [])
-  }
-
-  useCheckToken()
-
   function handleRegister(name, email, password) {
     register(name, email, password)
       .then((res) => {
         if (res) {
           handleLogin(email, password)
+          setRegisterError(false)
         }
       }).catch((err) => {
+        setRegisterError(true)
+        if (err === 400) {
+          setRegisterErrorText('Кажется, данные не верны...');
+        }
+        if (err === 409) {
+          setRegisterErrorText('Этот email уже занят');
+        }
+        if (err === 500) {
+          setRegisterErrorText('Ошибка сервера');
+        }
         console.log(err)
         setLoggedIn(false)
       })
@@ -56,39 +91,29 @@ function App() {
   function handleLogin(email, password) {
     autorize(email, password)
       .then((res) => {
-        console.log(res)
         if (res) {
           localStorage.setItem('token', res.token)
           history.push('/movies')
           setLoggedIn(true)
-          console.log('then')
+          setLoginError(false)
         }
-        
+
       })
       .catch((err) => {
+        setLoginError(true)
+        if (err === 400) {
+          setLoginErrorText('Кажется, данные не верны...');
+        }
+        if (err === 401) {
+          setLoginErrorText('Неверный email или пароль');
+        }
+        if (err === 500) {
+          setLoginErrorText('Ошибка сервера');
+        }
         setLoggedIn(false)
-        console.log('catch')
-        console.log('error', err)
+        console.log(err)
       });
   }
-
-
-
-  // function handleCheckToken() {
-
-  //   if (localStorage.getItem('token')) {
-
-  //     let jwt = localStorage.getItem('token')
-  //     checkToken(jwt).then((res) => {
-  //       if (res) {
-  //         setLoggedIn(true);
-  //         history.push('/movies')
-  //         console.log('checktoken', loggedIn)
-  //       }
-  //     }).catch((res) => console.log(res));
-  //   };
-  //   return;
-  // };
 
   function handleLogout() {
     localStorage.removeItem('token');
@@ -96,37 +121,47 @@ function App() {
     history.push('/')
   }
 
-
+  function patchUserInfo(userName, userEmail) {
+    updateProfile(userName, userEmail)
+      .then((res) => {
+        setCurrentUser(res)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+console.log(loggedIn)
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
-
         <Header signupLink="/signup" signinLink="/signin" lendingLink="/" filmsLink="/movies"
           savedFilmsLink="/saved-movies" accountLink="/profile" loggedIn={loggedIn} menuOpen={menuOpen} onOpenMenu={openMenu} onCloseMenu={closeMenu} />
+
         <Switch>
+
           <Route exact path="/">
             <Main />
           </Route>
 
           <Route path="/signin">
-            <Login handleLogin={handleLogin} />
+            <Login handleLogin={handleLogin} loginError={loginError} loginErrorText={loginErrorText} />
           </Route>
 
           <Route path="/signup">
-            <Register handleRegister={handleRegister} />
+            <Register handleRegister={handleRegister} registerError={registerError} registerErrorText={registerErrorText} />
           </Route>
 
-          <Route path="/movies">
+          <ProtectedRoute path="/movies" loggedIn={loggedIn}>
             <Movies />
-          </Route >
+          </ProtectedRoute>
 
-          <Route path="/saved-movies">
+          <ProtectedRoute path="/saved-movies" loggedIn={loggedIn}>
             <SavedMovies />
-          </Route >
+          </ProtectedRoute >
 
-          <Route path="/profile">
-            <Profile handleLogout={handleLogout} />
-          </Route>
+          <ProtectedRoute path="/profile" loggedIn={loggedIn}>
+            <Profile handleLogout={handleLogout} currentUser={currentUser} patchUserInfo={patchUserInfo} />
+          </ProtectedRoute>
 
           <Route path="*">
             <NotFoundPage />

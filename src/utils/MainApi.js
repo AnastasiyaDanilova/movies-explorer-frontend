@@ -34,4 +34,30 @@ export const checkToken = (token) => {
       "Authorization": `Bearer ${token}`
     }
   }).then(res => checkServerResponce(res))
+};
+
+export const getProfile = () => {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: 'GET',
+    headers: {
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+      'Content-Type': 'application/json'
+  }
+  }).then((res) =>
+    checkServerResponce(res)
+  )
+}
+
+export const updateProfile = (name, email) => {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: 'PATCH',
+    headers: {
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      name,
+      email
+    })
+  }).then((res) => checkServerResponce(res))
 }

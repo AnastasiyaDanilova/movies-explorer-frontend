@@ -1,22 +1,21 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 
 const useInput = (initialValue) => {
 
   const [value, setValue] = useState(initialValue)
-  const [onInput, setOnInput] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
 
   function onChange(e) {
     setValue(e.target.value)
-  }
-
-  function onBlur(e) {
-    setOnInput(true)
+    setErrorMessage(e.target.validationMessage)
   }
 
   return {
     value,
+    setValue,
     onChange,
-    onBlur
+    errorMessage
   }
-
 }
+
+export default useInput 

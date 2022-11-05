@@ -34,6 +34,11 @@
   font-size: 11px;
   line-height: 13px;
   width: 100%;
+  color: white;
+}
+
+.profile__input_error {
+  color: #EE3465;
 }
 
 .input-container_name {
@@ -61,6 +66,11 @@
   font-size: 12px;
   line-height: 15px;
   color: white;
+}
+
+.profile__button_disabled {
+  color: gray; 
+  cursor: auto;
 }
 
 .profile__button_out {
