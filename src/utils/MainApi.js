@@ -1,5 +1,3 @@
-// Напишите этот код на нативном JS, применяя fetch
-
 const BASE_URL = 'https://api.diploma-movies.nomoredomains.xyz'
 
 const checkServerResponce = (res) => {
@@ -42,7 +40,7 @@ export const getProfile = () => {
     headers: {
       authorization: `Bearer ${localStorage.getItem('token')}`,
       'Content-Type': 'application/json'
-  }
+    }
   }).then((res) =>
     checkServerResponce(res)
   )
@@ -60,4 +58,60 @@ export const updateProfile = (name, email) => {
       email
     })
   }).then((res) => checkServerResponce(res))
+}
+
+export const getSavedMovie = () => {
+  return fetch(`${BASE_URL}/movies`, {
+    method: 'GET',
+    headers: {
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+      'Content-Type': 'application/json'
+    }
+  })
+    .then((res) => checkServerResponce(res))
+}
+
+export const saveMovie = (country,
+  director,
+  duration,
+  year,
+  description,
+  image,
+  trailerLink,
+  nameRU,
+  nameEN,
+  thumbnail,
+  movieId) => {
+  return fetch(`${BASE_URL}/movies`, {
+      method: 'POST',
+      headers: {
+          authorization: `Bearer ${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+              country,
+              director,
+              duration,
+              year,
+              description,
+              image,
+              trailerLink,
+              nameRU,
+              nameEN,
+              thumbnail,
+              movieId,
+          })
+  })
+  .then((res) => checkServerResponce(res))
+}
+
+export const deleteMovie = (id) => {
+  return fetch(`${BASE_URL}/movies/${id}`, {
+      method: 'DELETE',
+      headers: {
+          authorization: `Bearer ${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json'
+          }
+  })
+  .then((res) => checkServerResponce(res))
 }

@@ -1,18 +1,31 @@
+import React, { useContext, useEffect, useState } from 'react';
+import { Route, useLocation } from 'react-router-dom';
+import Preloader from '../Preloader/Preloader';
+
 import './MoviesCardList.css';
 
-import { cards } from '../../utils/const';
 import MoviesCard from '../MoviesCard/MoviesCard';
 
-function MoviesCardList( {onclickSaveButton, isClickedSave}) {
+function MoviesCardList({ movies, moviesQuantity, handleLoadMore, saveMovies, savedMovies, isLoading, error, errorText, deleteMovieCard }) {
+
+
 
   return (
     <section className='movies'>
-      <ul className='movies__list'>
-        {cards.map((card) => {
-          return <MoviesCard movie={card} key={card.id} onclickSaveButton={onclickSaveButton} isClickedSave={isClickedSave} />
-        })}
-      </ul>
-      <button className='button movies__more-button' type='button'>Ещё</button>
+      {isLoading ? <Preloader /> : error ?
+        <p className='movie-list__error'>{errorText}</p> : <>
+          <ul className='movies__list'>
+            {movies.slice(0, moviesQuantity).map((movie) => {
+              return <MoviesCard movie={movie} key={movie.id || movie.movieId} handleLoadMore={handleLoadMore}
+                saveMovies={saveMovies} savedMovies={savedMovies} deleteMovieCard={deleteMovieCard} />
+            })}
+          </ul>
+          <Route path="/movies">
+            {moviesQuantity < movies.length &&
+              <button className='button movies__more-button' type='button' onClick={handleLoadMore}>Ещё</button>
+            }
+          </Route>
+        </>}
     </section>
   )
 };

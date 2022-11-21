@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css'
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Route, Switch, useHistory, useLocation } from 'react-router-dom';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
-import { register, autorize, checkToken, getProfile, updateProfile } from '../../utils/MainApi';
+import { register, autorize, checkToken, getProfile, updateProfile, getSavedMovie, deleteMovie } from '../../utils/MainApi';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
@@ -13,8 +13,11 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import PopupError from '../PopupError/PopupError';
 
 function App() {
+  let location = useLocation();
+  const history = useHistory()
 
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
@@ -26,9 +29,36 @@ function App() {
   const [loginError, setLoginError] = React.useState('');
   const [loginErrorText, setLoginErrorText] = React.useState(false);
 
+  const [savedMovies, setSavedMovies] = React.useState([])
 
-  const history = useHistory()
+  const [popupError, setPopupError] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
 
+  
+
+  // получение сохраненных фильмов
+  React.useEffect(() => {
+    setIsLoading(true)
+    if (localStorage.getItem('token')) {
+      getSavedMovie()
+        .then((res) => {
+          setSavedMovies(res.filter((i) => i.owner._id === currentUser._id))
+        })
+        .catch((err) => console.log(err))
+        .finally(() => { setIsLoading(false) })
+    }
+  }, [currentUser])
+
+  // удаление фильма
+  function deleteMovieCard(movie) {
+    deleteMovie(movie._id)
+      .then((res) => {
+        setSavedMovies((state) => state.filter((c) => c._id !== movie._id))
+      })
+      .catch((err) => setPopupError(true))
+  }
+
+  // проверка входа
   React.useEffect(() => {
     const token = localStorage.getItem('token')
 
@@ -37,6 +67,7 @@ function App() {
         .then((res) => {
           if (res) {
             setLoggedIn(true);
+            history.push(location)
           }
         })
         .catch((err) => {
@@ -45,6 +76,7 @@ function App() {
     }
   }, [])
 
+  // получени данных пользователя
   React.useEffect(() => {
     if (loggedIn) {
       getProfile()
@@ -57,6 +89,7 @@ function App() {
     }
   }, [loggedIn])
 
+  // открыть закрыть меню
   function openMenu() {
     setMenuOpen(true)
   }
@@ -65,6 +98,7 @@ function App() {
     setMenuOpen(false)
   }
 
+  // регистрацция
   function handleRegister(name, email, password) {
     register(name, email, password)
       .then((res) => {
@@ -88,6 +122,7 @@ function App() {
       })
   }
 
+  // вход
   function handleLogin(email, password) {
     autorize(email, password)
       .then((res) => {
@@ -115,12 +150,14 @@ function App() {
       });
   }
 
+  // выход
   function handleLogout() {
-    localStorage.removeItem('token');
     setLoggedIn(false);
     history.push('/')
+    localStorage.clear();
   }
 
+  // обновлениее данныъх пользователяя
   function patchUserInfo(userName, userEmail) {
     updateProfile(userName, userEmail)
       .then((res) => {
@@ -130,7 +167,9 @@ function App() {
         console.log(err)
       })
   }
-console.log(loggedIn)
+  function closePopupError() {
+    setPopupError(false)
+}
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
@@ -152,11 +191,14 @@ console.log(loggedIn)
           </Route>
 
           <ProtectedRoute path="/movies" loggedIn={loggedIn}>
-            <Movies />
+            <Movies 
+              savedMovies={savedMovies} setSavedMovies={setSavedMovies}
+              setPopupError={setPopupError} deleteMovieCard={deleteMovieCard} />
           </ProtectedRoute>
 
           <ProtectedRoute path="/saved-movies" loggedIn={loggedIn}>
-            <SavedMovies />
+            <SavedMovies savedMovies={savedMovies} isLoading={isLoading} deleteMovieCard={deleteMovieCard}
+            />
           </ProtectedRoute >
 
           <ProtectedRoute path="/profile" loggedIn={loggedIn}>
@@ -169,7 +211,7 @@ console.log(loggedIn)
 
         </Switch>
         <Footer />
-
+        <PopupError closePopupError={closePopupError} popupError={popupError}/>
       </CurrentUserContext.Provider>
     </div>
   );
