@@ -54,13 +54,15 @@
   margin: 0 0 24px;
 }
 
+.menu__link_active {
+  border-bottom: 2px solid white;
+}
 .menu__link:last-child {
   margin-bottom: 0;
   margin-right: 0;
 }
 
 .menu__link_films {
-  border-bottom: 2px solid white;
   margin-bottom: 17px;
   padding-bottom: 7px;
 }
@@ -129,10 +131,10 @@
     line-height: 18px;
     font-weight: 400;
     margin-right: 20px;
+    border-bottom: none;
   }
 
   .menu__link_films {
-    border-bottom: none;
     margin-bottom: 0;
     padding-bottom: 0;
     font-weight: 500;

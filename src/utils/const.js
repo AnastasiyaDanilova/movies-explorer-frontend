@@ -1,3 +1,5 @@
+export const EMAIL_VALID = '^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,})+$';
+
 export const firstMoviesQuantity = (width) => {
     if (width >= 940) {
         return 12;

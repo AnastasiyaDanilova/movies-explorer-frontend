@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom';
 import './AuthForm.css';
 
 
-function AuthForm({ title, buttonText, children, handleSubmit, authText, authButtonText, authButtonTextPath, buttonClass, formError, errorText, disable}) {
+function AuthForm({submitButtonDisabled, title, buttonText, children, handleSubmit, authText, authButtonText, authButtonTextPath, buttonClass, formError, errorText, disable}) {
+  
   return (
     <div className="auth">
       <div className="auth-logo">
@@ -17,7 +18,7 @@ function AuthForm({ title, buttonText, children, handleSubmit, authText, authBut
       <form className="auth__form" onSubmit={handleSubmit}>
         {children}
         <span className="form__submit-error-span" htmlFor='form-button' >{formError ? errorText : ''}</span>
-        <button className={!disable ? `button auth__button ${buttonClass}` : `button auth__button ${buttonClass} auth__button_disabled`} id='form-button' type="submit" disabled={disable} >{buttonText}</button>
+        <button className={!submitButtonDisabled && !disable ? `auth__button ${buttonClass}` : `auth__button ${buttonClass} auth__button_disabled`} id='form-button' type="submit" disabled={disable} >{buttonText}</button>
       </form>
       <p className="auth__text">{authText} <Link className='auth__buttonText' to={`${authButtonTextPath}`}>{authButtonText}</Link></p>
     </div>

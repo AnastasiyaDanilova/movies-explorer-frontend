@@ -20,6 +20,13 @@
   width: 100%;
 }
 
+.form__update-span {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: gray;
+}
+
 .profile__container {
   margin-bottom: 379px;
   width: 100%;

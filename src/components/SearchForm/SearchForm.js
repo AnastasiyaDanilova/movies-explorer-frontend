@@ -11,7 +11,7 @@ function SearchForm({ handleFilmSearch, handleFilmChange, film, showShortMovies,
         <div className='search-form__input-container'>
           <input className='search-form__input' type='text' value={film || ''}
                         onChange={handleFilmChange} placeholder='Фильм' ></input>
-          <button className='button search-form__button' type='submit'/>
+          <button className='search-form__button' type='submit'/>
         </div>
 
         <div className='search-form__checkbox-container'>

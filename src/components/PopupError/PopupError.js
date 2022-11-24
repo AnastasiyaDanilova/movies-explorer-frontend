@@ -3,6 +3,7 @@ import './PopupError.css';
 import error from '../../images/error.svg';
 
 function PopupError({ popupError, closePopupError }) {
+    
     return (
         <div className={`popup ${popupError && 'popup_opened'}`}>
             <div className="popup__container">

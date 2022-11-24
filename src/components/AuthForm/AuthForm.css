@@ -31,6 +31,8 @@
   color: white;
   background-color: var(--button-auth-color);
   border-radius: 3px;
+  cursor: pointer;
+  border: none;
 }
 
 .auth__button_disabled {

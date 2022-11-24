@@ -1,14 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Route, useLocation } from 'react-router-dom';
+import React from 'react';
+import { Route } from 'react-router-dom';
 import Preloader from '../Preloader/Preloader';
+import MoviesCard from '../MoviesCard/MoviesCard';
 
 import './MoviesCardList.css';
 
-import MoviesCard from '../MoviesCard/MoviesCard';
-
-function MoviesCardList({ movies, moviesQuantity, handleLoadMore, saveMovies, savedMovies, isLoading, error, errorText, deleteMovieCard }) {
-
-
+function MoviesCardList({ movies, moviesQuantity, handleLoadMore, saveMovies, savedMovies, isLoading, error, errorText, deleteMovieCard, submitButtonDisabled }) {
 
   return (
     <section className='movies'>
@@ -16,8 +13,8 @@ function MoviesCardList({ movies, moviesQuantity, handleLoadMore, saveMovies, sa
         <p className='movie-list__error'>{errorText}</p> : <>
           <ul className='movies__list'>
             {movies.slice(0, moviesQuantity).map((movie) => {
-              return <MoviesCard movie={movie} key={movie.id || movie.movieId} handleLoadMore={handleLoadMore}
-                saveMovies={saveMovies} savedMovies={savedMovies} deleteMovieCard={deleteMovieCard} />
+              return <MoviesCard movie={movie} key={Math.random()} handleLoadMore={handleLoadMore}
+                saveMovies={saveMovies} savedMovies={savedMovies} deleteMovieCard={deleteMovieCard} submitButtonDisabled={submitButtonDisabled} />
             })}
           </ul>
           <Route path="/movies">

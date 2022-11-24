@@ -4,7 +4,7 @@ import useInput from '../../hooks/useInput';
 import './Register.css';
 import AuthForm from '../AuthForm/AuthForm';
 
-function Register({ handleRegister, registerError, registerErrorText }) {
+function Register({ handleRegister, registerError, registerErrorText, submitButtonDisabled }) {
   const [disable, setDisable] = useState(true)
 
   const { value: name, onChange: onChangeName, errorMessage: nameError } = useInput('')
@@ -28,7 +28,7 @@ function Register({ handleRegister, registerError, registerErrorText }) {
 
       <AuthForm title='Добро пожаловать!' buttonText='Зарегистрироваться' authText='Уже зарегистрированы?' authButtonText='Войти'
         authButtonTextPath="/signin" buttonClass="register-button" handleSubmit={handleSubmitAuth} formError={registerError} 
-        errorText={registerErrorText} disable={disable}>
+        errorText={registerErrorText} disable={disable} submitButtonDisabled={submitButtonDisabled}>
 
         <label className='form__label-register' htmlFor='input-name'>Имя</label>
         <input className={nameError === '' ? 'form__input-register' : 'form__input-register form__input_error'} id='input-name' placeholder='Имя' 

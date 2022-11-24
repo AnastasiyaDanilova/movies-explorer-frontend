@@ -1,16 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react';
-
-import './Movies.css';
+import React, { useEffect } from 'react';
 
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import { getMovies } from '../../utils/MoviesApi';
 import { saveMovie } from '../../utils/MainApi';
 import { firstMoviesQuantity, moreFilmsQuantity } from '../../utils/const'
-import {moviesFilter} from '../../utils/moviesFilter'
+import { moviesFilter } from '../../utils/moviesFilter'
 
 
-function Movies({ savedMovies, setSavedMovies, setPopupError, deleteMovieCard}) {
+function Movies({ savedMovies, setSavedMovies, setPopupError, deleteMovieCard, submitButtonDisabled, setSubmitButtonDisabled }) {
   const moviesInLocal = JSON.parse(localStorage.getItem('allMovies'));
   const [movies, setMovies] = React.useState([]);
   const [error, setError] = React.useState(false);
@@ -23,6 +21,7 @@ function Movies({ savedMovies, setSavedMovies, setPopupError, deleteMovieCard}) 
   const [checkShorts, setCheckShorts] = React.useState(JSON.parse(localStorage.getItem('checkBox')) || false);
 
   function saveMovies(movies) {
+    setSubmitButtonDisabled(true)
     saveMovie(movies.country,
       movies.director,
       movies.duration,
@@ -38,6 +37,7 @@ function Movies({ savedMovies, setSavedMovies, setPopupError, deleteMovieCard}) 
         setSavedMovies([res, ...savedMovies])
       })
       .catch((err) => setPopupError(true))
+      .finally(() => setSubmitButtonDisabled(false))
   }
 
   useEffect(() => {
@@ -49,11 +49,11 @@ function Movies({ savedMovies, setSavedMovies, setPopupError, deleteMovieCard}) 
 
     setMovies(filteredMoviesInLocal);
     if (filteredMoviesInLocal.length === 0 && film.length > 0) {
-        setIsLoading(false);
-        setErrorText('Ничего не найдено');
-        return setError(true);
+      setIsLoading(false);
+      setErrorText('Ничего не найдено');
+      return setError(true);
     }
-}, [allMovies, checkShorts])
+  }, [allMovies, checkShorts])
 
   useEffect(() => {
     function handleWindowSize() {
@@ -119,7 +119,8 @@ function Movies({ savedMovies, setSavedMovies, setPopupError, deleteMovieCard}) 
       <SearchForm handleFilmSearch={handleFilmSearch} handleFilmChange={handleFilmChange}
         film={film} showShortMovies={showShortMovies} checkShorts={checkShorts} />
       <MoviesCardList movies={movies} moviesQuantity={moviesQuantity} isLoading={isLoading} error={error}
-        handleLoadMore={handleLoadMore} saveMovies={saveMovies} errorText={errorText} savedMovies={savedMovies} deleteMovieCard={deleteMovieCard}/>
+        handleLoadMore={handleLoadMore} saveMovies={saveMovies} errorText={errorText} savedMovies={savedMovies}
+        deleteMovieCard={deleteMovieCard} />
     </main>
   )
 };

@@ -13,7 +13,8 @@
 }
 
 .techs__line {
-  color: black;
+  border-color: #000;
+  width: 100%;
 }
 
 .techs__subtitle {
@@ -67,7 +68,7 @@
   }
 
   .techs__line {
-    color: #DADADA;
+    border-color: #DADADA;
   }
 
   .techs__title {
