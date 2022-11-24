@@ -55,7 +55,7 @@ function MoviesCard({ movie, saveMovies, savedMovies, deleteMovieCard, submitBut
         </Route>
 
         <Route path="/saved-movies">
-          <button className='movieCard__delete-button ' onClick={deleteFilm} type='button' disabled={submitButtonDisabled}></button>
+          <button className='movieCard__delete-button' onClick={deleteFilm} type='button' disabled={submitButtonDisabled}></button>
         </Route>
 
       </Switch>
