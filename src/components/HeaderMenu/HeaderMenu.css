@@ -96,6 +96,7 @@
 
 }
 
+
 @media screen and (min-width: 940px) {
   .menu {
     background-color: transparent;
@@ -132,12 +133,12 @@
     font-weight: 400;
     margin-right: 20px;
     border-bottom: none;
+    font-weight: 400px;
   }
 
   .menu__link_films {
     margin-bottom: 0;
     padding-bottom: 0;
-    font-weight: 500;
   }
 
   .menu__close-icon {
@@ -147,5 +148,10 @@
   .menu__link_account {
     margin-left: 50px;
   }
+
+  
+.menu__link_active {
+ font-weight: 500px;
+}
 
 }

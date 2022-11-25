@@ -1,5 +1,15 @@
 export const EMAIL_VALID = '^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,})+$';
 
+export function getHoursAndMinutes(movieTime) {
+    const minutes = movieTime % 60;
+    const hours = Math.floor(movieTime / 60);
+
+    if (hours === 0) {
+      return `${movieTime} минут`
+    }
+    return `${hours}ч ${minutes}м`;
+  }
+
 export const firstMoviesQuantity = (width) => {
     if (width >= 940) {
         return 12;

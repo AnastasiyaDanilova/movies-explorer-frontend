@@ -57,6 +57,7 @@ function Movies({ savedMovies, setSavedMovies, setPopupError, deleteMovieCard, s
 
   useEffect(() => {
     function handleWindowSize() {
+      setMoviesQuantity(firstMoviesQuantity(window.innerWidth))
       setWidth(window.innerWidth);
     }
     window.addEventListener('resize', handleWindowSize)
@@ -120,7 +121,7 @@ function Movies({ savedMovies, setSavedMovies, setPopupError, deleteMovieCard, s
         film={film} showShortMovies={showShortMovies} checkShorts={checkShorts} />
       <MoviesCardList movies={movies} moviesQuantity={moviesQuantity} isLoading={isLoading} error={error}
         handleLoadMore={handleLoadMore} saveMovies={saveMovies} errorText={errorText} savedMovies={savedMovies}
-        deleteMovieCard={deleteMovieCard} />
+        deleteMovieCard={deleteMovieCard} submitButtonDisabled={submitButtonDisabled} setSubmitButtonDisabled={setSubmitButtonDisabled}/>
     </main>
   )
 };

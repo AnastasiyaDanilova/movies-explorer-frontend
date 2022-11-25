@@ -19,7 +19,7 @@ function MoviesCardList({ movies, moviesQuantity, handleLoadMore, saveMovies, sa
           </ul>
           <Route path="/movies">
             {moviesQuantity < movies.length &&
-              <button className='button movies__more-button' type='button' onClick={handleLoadMore}>Ещё</button>
+              <button className='movies__more-button' type='button' onClick={handleLoadMore}>Ещё</button>
             }
           </Route>
         </>}

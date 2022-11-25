@@ -1,6 +1,8 @@
 import React from 'react';
 import { Route, Switch, useLocation } from 'react-router-dom';
 
+import { getHoursAndMinutes } from '../../utils/const';
+
 import './MoviesCard.css';
 
 function MoviesCard({ movie, saveMovies, savedMovies, deleteMovieCard, submitButtonDisabled }) {
@@ -8,6 +10,8 @@ function MoviesCard({ movie, saveMovies, savedMovies, deleteMovieCard, submitBut
   const location = useLocation();
 
   const isSaved = movie.id ? savedMovies.map((i) => i.movieId).includes(movie.id) : location.pathname === '/saved-movies' ? true : '';
+
+  const hoursAndMinutes = getHoursAndMinutes(movie.duration)
 
   function filmSave() {
     saveMovies({
@@ -32,18 +36,6 @@ function MoviesCard({ movie, saveMovies, savedMovies, deleteMovieCard, submitBut
     if (location.pathname === '/movies')
       deleteMovieCard(savedMovies.find((i) => i.movieId === movie.id))
   }
-
-  function getHoursAndMinutes(movieTime) {
-    const minutes = movieTime % 60;
-    const hours = Math.floor(movieTime / 60);
-
-    if (hours === 0) {
-      return `${movieTime} минут`
-    }
-    return `${hours}ч ${minutes}м`;
-  }
-
-  const hoursAndMinutes = getHoursAndMinutes(movie.duration)
 
   return (
     <li className='movieCard'>

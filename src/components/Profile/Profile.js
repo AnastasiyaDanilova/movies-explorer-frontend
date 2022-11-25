@@ -6,7 +6,7 @@ import { EMAIL_VALID } from '../../utils/const';
 
 import './Profile.css';
 
-function Profile({ handleLogout, patchUserInfo, updateProfileText, setUpdateProfileText }) {
+function Profile({ handleLogout, patchUserInfo, updateProfileText, submitButtonDisabled }) {
   const currentUser = useContext(CurrentUserContext)
 
   const [disable, setDisable] = useState(true)
@@ -51,7 +51,7 @@ function Profile({ handleLogout, patchUserInfo, updateProfileText, setUpdateProf
           <span className='form__error-span' htmlFor='profile-email'>{emailError}</span>
         </div>
         <p className='form__update-span'>{updateProfileText}</p>
-        <button className={!disable ? 'button profile__button' : 'button profile__button profile__button_disabled'} disabled={disable} type='submit'>Редактировать</button>
+        <button className={!submitButtonDisabled && !disable ? 'button profile__button' : 'button profile__button profile__button_disabled'} disabled={disable} type='submit'>Редактировать</button>
         <button className='button profile__button profile__button_out' type='button' onClick={handleLogout}>Выйти из аккаунта</button>
       </form>
     </section>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, useHistory, useLocation } from 'react-router-dom';
+import { Redirect, Route, Switch, useHistory, useLocation } from 'react-router-dom';
 
 import { register, autorize, checkToken, getProfile, updateProfile, getSavedMovie, deleteMovie } from '../../utils/MainApi';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
@@ -38,6 +38,20 @@ function App() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [submitButtonDisabled, setSubmitButtonDisabled] = React.useState(false);
 
+  // защита входа и выхода от авторизованных пользователей
+  React.useEffect(()=> {
+    if (loggedIn && location.pathname === '/signup'){
+      history.push('/movies')
+    }
+    
+    if(loggedIn && location.pathname === '/signin') {
+      history.push('/movies')
+    }
+  }, [loggedIn, location])
+
+  React.useEffect(()=> {
+    history.listen(console.log)
+  })
 
   // проверка входа
   React.useEffect(() => {
@@ -53,6 +67,8 @@ function App() {
         })
         .catch((err) => {
           console.log(err)
+          handleLogout()
+          setLoggedIn(false)
         })
     }
   }, [])
