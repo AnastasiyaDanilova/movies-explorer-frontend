@@ -10,7 +10,6 @@ const history = useHistory()
 function goBackHistory () {
   history.goBack()
   history.goBack()
-  history.goBack()
 }
 
   return (
