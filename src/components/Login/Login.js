@@ -31,11 +31,11 @@ function Login({ handleLogin, loginError, loginErrorText, submitButtonDisabled }
         authButtonText='Регистрация' authButtonTextPath="/signup" buttonClass="login-button"
         handleSubmit={handleSubmitAuth} formError={loginError} errorText={loginErrorText} disable={disable} submitButtonDisabled={submitButtonDisabled}>
         <label className='form__label' htmlFor='input-email'>E-mail</label>
-        <input className='form__input' id='input-email' placeholder='Email' value={email || ''} onChange={onChangeEmail} type='email' pattern={EMAIL_VALID} required />
+        <input className='form__input' id='input-email' placeholder='Email' value={email || ''} onChange={onChangeEmail} type='email' pattern={EMAIL_VALID} disabled={submitButtonDisabled} required />
         <span className='form__error-span' htmlFor='input-email'>{emailError}</span>
 
         <label className='form__label' htmlFor='input-password'>Пароль</label>
-        <input className='form__input' id='input-password' placeholder='Пароль' value={password || ''} onChange={onChangePassword} type='password' required />
+        <input className='form__input' id='input-password' placeholder='Пароль' value={password || ''} onChange={onChangePassword} type='password' disabled={submitButtonDisabled} required />
         <span className='form__error-span' htmlFor='input-password'>{passwordError}</span>
       </AuthForm>
 

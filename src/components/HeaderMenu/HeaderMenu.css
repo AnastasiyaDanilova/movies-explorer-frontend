@@ -56,6 +56,12 @@
 
 .menu__link_active {
   border-bottom: 2px solid white;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  margin: 0 0 24px;
 }
 .menu__link:last-child {
   margin-bottom: 0;
@@ -127,13 +133,24 @@
     display: none;
   }
 
+  .menu__link_active {
+    font-weight: 500px;
+    font-size: 14px;
+    line-height: 18px;
+    margin-right: 20px;
+    border-bottom: none;
+   }
+
+   .menu__link_saved-films {
+    margin: 0;
+   }
+
   .menu__link {
     font-size: 14px;
     line-height: 18px;
     font-weight: 400;
     margin-right: 20px;
     border-bottom: none;
-    font-weight: 400px;
   }
 
   .menu__link_films {
@@ -150,8 +167,6 @@
   }
 
   
-.menu__link_active {
- font-weight: 500px;
-}
+
 
 }

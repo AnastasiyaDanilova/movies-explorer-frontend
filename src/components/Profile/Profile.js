@@ -39,14 +39,14 @@ function Profile({ handleLogout, patchUserInfo, updateProfileText, submitButtonD
           <div className='input-container input-container_name'>
             <label className='profile__label' htmlFor='profile-name'>Имя</label>
             <input className={nameError === '' ? 'profile__input profile__input_name' : 'profile__input profile__input_name profile__input_error'}
-              id='profile-name' placeholder='Имя' onChange={onChangeName} value={name || ''} pattern="^[А-Яа-яЁёa-zA-Z\s-]+$" minLength='2' maxLength='30' requared="true" />
+              id='profile-name' placeholder='Имя' onChange={onChangeName} value={name || ''} disabled={submitButtonDisabled} pattern="^[А-Яа-яЁёa-zA-Z\s-]+$" minLength='2' maxLength='30' requared="true" />
           </div>
           <span className='form__error-span' htmlFor='profile-name'>{nameError}</span>
 
           <div className='input-container input-container_email'>
             <label className='profile__label' htmlFor='profile-email'>E-mail</label>
             <input className={emailError === '' ? 'profile__input' : 'profile__input profile__input_error'} id='profile-email' placeholder='E-mail'
-              onChange={onChangeEmail} value={email || ''} type='email' pattern={EMAIL_VALID} requared="true" />
+              onChange={onChangeEmail} value={email || ''} type='email' pattern={EMAIL_VALID} requared="true" disabled={submitButtonDisabled}/>
           </div>
           <span className='form__error-span' htmlFor='profile-email'>{emailError}</span>
         </div>

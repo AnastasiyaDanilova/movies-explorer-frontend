@@ -8,7 +8,7 @@ import { firstMoviesQuantity, moreFilmsQuantity } from '../../utils/const'
 import { moviesFilter } from '../../utils/moviesFilter'
 
 
-function Movies({ savedMovies, setSavedMovies, setPopupError, deleteMovieCard, submitButtonDisabled, setSubmitButtonDisabled }) {
+function Movies({ savedMovies, setSavedMovies, setPopupError, deleteMovieCard, submitButtonDisabled, setSubmitButtonDisabled, handleLogout }) {
   const moviesInLocal = JSON.parse(localStorage.getItem('allMovies'));
   const [movies, setMovies] = React.useState([]);
   const [error, setError] = React.useState(false);
@@ -36,7 +36,12 @@ function Movies({ savedMovies, setSavedMovies, setPopupError, deleteMovieCard, s
       .then((res) => {
         setSavedMovies([res, ...savedMovies])
       })
-      .catch((err) => setPopupError(true))
+      .catch((err) => {
+        if (err === 401) {
+          handleLogout()
+        }
+        setPopupError(true)
+      })
       .finally(() => setSubmitButtonDisabled(false))
   }
 
@@ -121,7 +126,7 @@ function Movies({ savedMovies, setSavedMovies, setPopupError, deleteMovieCard, s
         film={film} showShortMovies={showShortMovies} checkShorts={checkShorts} />
       <MoviesCardList movies={movies} moviesQuantity={moviesQuantity} isLoading={isLoading} error={error}
         handleLoadMore={handleLoadMore} saveMovies={saveMovies} errorText={errorText} savedMovies={savedMovies}
-        deleteMovieCard={deleteMovieCard} submitButtonDisabled={submitButtonDisabled} setSubmitButtonDisabled={setSubmitButtonDisabled}/>
+        deleteMovieCard={deleteMovieCard} submitButtonDisabled={submitButtonDisabled} setSubmitButtonDisabled={setSubmitButtonDisabled} />
     </main>
   )
 };

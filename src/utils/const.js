@@ -11,7 +11,7 @@ export function getHoursAndMinutes(movieTime) {
   }
 
 export const firstMoviesQuantity = (width) => {
-    if (width >= 940) {
+    if (width >= 1280) {
         return 12;
     }
     if (width >= 600) {
@@ -23,7 +23,7 @@ export const firstMoviesQuantity = (width) => {
 }
 
 export const moreFilmsQuantity = (width) => {
-    if (width >= 940) {
+    if (width >= 1280) {
         return 3;
     }
     return 2;

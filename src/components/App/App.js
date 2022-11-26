@@ -221,7 +221,7 @@ function App() {
             <Movies
               savedMovies={savedMovies} setSavedMovies={setSavedMovies}
               setPopupError={setPopupError} deleteMovieCard={deleteMovieCard}
-              submitButtonDisabled={submitButtonDisabled} setSubmitButtonDisabled={setSubmitButtonDisabled} />
+              submitButtonDisabled={submitButtonDisabled} setSubmitButtonDisabled={setSubmitButtonDisabled} handleLogout={handleLogout} />
           </ProtectedRoute>
 
           <ProtectedRoute path="/saved-movies" loggedIn={loggedIn}>
