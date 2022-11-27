@@ -9,7 +9,6 @@ import Portfolio from '../Portfolio/Portfolio';
 import './Main.css';
 
 function Main() {
-
   return (
     <main className="main">
       <Promo />

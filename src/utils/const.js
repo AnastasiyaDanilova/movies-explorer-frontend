@@ -1,86 +1,30 @@
-export const cards = [
-  {
-      name: 'В погоне за Бенкси',
-      image: "https://lapkins.ru/upload/uf/f79/f795e55cc07bda34c64a596af9ac28e1.jpg",
-      time: '27 минут',
-      like: false,
-      id: 1,
-  },
-  {
-      name: 'В погоне за Бенкси',
-      image: "https://lapkins.ru/upload/uf/f79/f795e55cc07bda34c64a596af9ac28e1.jpg",
-      time: '27 минут',
-      like: false,
-      id: 2,
-  },
-  {
-      name: 'В погоне за Бенкси',
-      image: "https://lapkins.ru/upload/uf/f79/f795e55cc07bda34c64a596af9ac28e1.jpg",
-      time: '27 минут',
-      like: false,
-      id: 3,
-  },
-  {
-      name: 'В погоне за Бенкси',
-      image: "https://lapkins.ru/upload/uf/f79/f795e55cc07bda34c64a596af9ac28e1.jpg",
-      time: '27 минут',
-      like: false,
-      id: 4,
-  },
-  {
-      name: 'В погоне за Бенкси',
-      image: "https://lapkins.ru/upload/uf/f79/f795e55cc07bda34c64a596af9ac28e1.jpg",
-      time: '27 минут',
-      like: false,
-      id: 5,
-  },
-  {
-      name: 'В погоне за Бенкси',
-      image: "https://lapkins.ru/upload/uf/f79/f795e55cc07bda34c64a596af9ac28e1.jpg",
-      time: '27 минут',
-      like: false,
-      id: 6,
-  },
-  {
-      name: 'В погоне за Бенкси',
-      image: "https://lapkins.ru/upload/uf/f79/f795e55cc07bda34c64a596af9ac28e1.jpg",
-      time: '27 минут',
-      like: false,
-      id: 7,
-  },
-  {
-      name: 'В погоне за Бенкси',
-      image: "https://lapkins.ru/upload/uf/f79/f795e55cc07bda34c64a596af9ac28e1.jpg",
-      time: '27 минут',
-      like: false,
-      id: 8,
-  },
-  {
-      name: 'В погоне за Бенкси',
-      image: "https://lapkins.ru/upload/uf/f79/f795e55cc07bda34c64a596af9ac28e1.jpg",
-      time: '27 минут',
-      like: false,
-      id: 9,
-  },
-  {
-      name: 'В погоне за Бенкси',
-      image: "https://lapkins.ru/upload/uf/f79/f795e55cc07bda34c64a596af9ac28e1.jpg",
-      time: '27 минут',
-      like: false,
-      id: 10,
-  },
-  {
-      name: 'В погоне за Бенкси',
-      image: "https://lapkins.ru/upload/uf/f79/f795e55cc07bda34c64a596af9ac28e1.jpg",
-      time: '27 минут',
-      like: false,
-      id: 11,
-  },
-  {
-      name: 'В погоне за Бенкси',
-      image: "https://lapkins.ru/upload/uf/f79/f795e55cc07bda34c64a596af9ac28e1.jpg",
-      time: '27 минут',
-      like: false,
-      id: 12,
-  },
-];
+export const EMAIL_VALID = '^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,})+$';
+
+export function getHoursAndMinutes(movieTime) {
+    const minutes = movieTime % 60;
+    const hours = Math.floor(movieTime / 60);
+
+    if (hours === 0) {
+      return `${movieTime} минут`
+    }
+    return `${hours}ч ${minutes}м`;
+  }
+
+export const firstMoviesQuantity = (width) => {
+    if (width >= 1280) {
+        return 12;
+    }
+    if (width >= 600) {
+        return 8;
+    }
+    else {
+        return 5;
+    }
+}
+
+export const moreFilmsQuantity = (width) => {
+    if (width >= 1280) {
+        return 3;
+    }
+    return 2;
+}

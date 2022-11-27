@@ -1,8 +1,12 @@
 .form__label-register {
   font-weight: 400;
-font-size: 10px;
-line-height: 12px;
-color: #8B8B8B;
+  font-size: 10px;
+  line-height: 12px;
+  color: #8B8B8B;
+}
+
+.form__input_error {
+  color: #EE3465;
 }
 
 .form__input-register {
@@ -16,11 +20,20 @@ color: #8B8B8B;
 
 .form__input-register:last-child {
   margin-bottom: 0px;
-} 
+}
 
 .register-button {
   margin: 179px 0 0;
   padding: 15px 67px 15px 68px;
+}
+
+.form__error-span {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #EE3465;
+  margin-top: -10px;
+  margin-bottom: 10px;
 }
 
 @media screen and (min-width: 600px) {

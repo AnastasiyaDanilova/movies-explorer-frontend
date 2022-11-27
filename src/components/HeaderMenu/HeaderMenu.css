@@ -54,13 +54,21 @@
   margin: 0 0 24px;
 }
 
+.menu__link_active {
+  border-bottom: 2px solid white;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  margin: 0 0 24px;
+}
 .menu__link:last-child {
   margin-bottom: 0;
   margin-right: 0;
 }
 
 .menu__link_films {
-  border-bottom: 2px solid white;
   margin-bottom: 17px;
   padding-bottom: 7px;
 }
@@ -94,6 +102,7 @@
 
 }
 
+
 @media screen and (min-width: 940px) {
   .menu {
     background-color: transparent;
@@ -124,18 +133,29 @@
     display: none;
   }
 
+  .menu__link_active {
+    font-weight: 500px;
+    font-size: 14px;
+    line-height: 18px;
+    margin-right: 20px;
+    border-bottom: none;
+   }
+
+   .menu__link_saved-films {
+    margin: 0;
+   }
+
   .menu__link {
     font-size: 14px;
     line-height: 18px;
     font-weight: 400;
     margin-right: 20px;
+    border-bottom: none;
   }
 
   .menu__link_films {
-    border-bottom: none;
     margin-bottom: 0;
     padding-bottom: 0;
-    font-weight: 500;
   }
 
   .menu__close-icon {
@@ -145,5 +165,8 @@
   .menu__link_account {
     margin-left: 50px;
   }
+
+  
+
 
 }

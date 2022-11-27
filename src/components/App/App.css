@@ -1,16 +1,14 @@
 .line {
-  margin: 0;
   border: none;
   border-top: 1px solid;
 }
 
 .large_line {
-  color: var(--large-lane-color);
+  border-color: var(--large-lane-color);
 }
 
 .button {
   background-color: transparent;
-  margin: 0;
   padding: 0;
   border: none;
   cursor: pointer;
