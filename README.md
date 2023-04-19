@@ -1,7 +1,36 @@
 # movies-explorer-frontend
 
-Ссылка на макет - https://disk.yandex.ru/d/sYEaMRI6SGlIEw
+## Что за проект? 
 
-Ссылка на сайт - https://diploma-movies.nomoredomains.xyz/
+Учебный проект, реализована регистрация и авторизация пользователей. Взаимодействие с API, поиск и просмотр фильмов. Возможность управлять своей коллекцией: добавлять и удалять фильмы.   
 
-Ссылка на Pull request - https://github.com/AnastasiyaDanilova/movies-explorer-frontend/pull/2
+## Технологии
+
+* HTML5
+* CSS3
+* JavaScript
+* Методология BEM
+* API
+* React.js
+* Node.js
+* ВМ Яндекс Облака
+
+## Установить проект:
+
+1. Клонировать репозиторий 
+
+```
+git clone git@github.com:BiggoDot/mesto-react.git
+```
+
+2. Установить зависимости 
+
+```
+npm install
+```
+
+3. Открыть на сервере 
+
+```
+npm start
+```
